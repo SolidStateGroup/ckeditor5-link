@@ -60,6 +60,20 @@ export default class LinkEditing extends Plugin {
 				}
 			} ) );
 
+		editor.conversion.for( 'upcast' )
+			.add( upcastElementToAttribute( {
+				view: {
+					name: 'a',
+					attributes: {
+						target: true
+					}
+				},
+				model: {
+					key: 'linkHref',
+					value: viewElement => viewElement.getAttribute( 'target' )
+				}
+			} ) );
+
 		// Create linking commands.
 		editor.commands.add( 'link', new LinkCommand( editor ) );
 		editor.commands.add( 'unlink', new UnlinkCommand( editor ) );
